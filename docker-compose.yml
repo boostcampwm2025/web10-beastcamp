@@ -1,0 +1,75 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: ticketing_training_mysql
+    restart: always
+    environment:
+      # 추후 env로 변경
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: ticketing_db
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      TZ: Asia/Seoul
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - ticketing_training_net
+  redis:
+    image: redis:7.2-alpine
+    container_name: ticketing_training_redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - ticketing_training_net
+  backend:
+    build:
+      context: ./backend
+    container_name: ticketing_training_be
+    working_dir: /usr/src/app/backend
+    command: sh -c "npm install && npm run start:dev"
+    volumes:
+      - ./backend:/usr/src/app/backend
+      - /usr/src/app/backend/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      # 추후 env로 변경
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_USERNAME: test
+      DB_PASSWORD: test
+      DB_DATABASE: ticketing_db
+
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - ticketing_training_net
+  frontend:
+    build:
+      context: ./frontend
+    container_name: ticketing_training_fe
+    working_dir: /usr/src/app/frontend
+    command: sh -c "npm install && npm run dev --host"
+    volumes:
+      - ./frontend:/usr/src/app/frontend
+      - /usr/src/app/frontend/node_modules
+    ports:
+      - "5173:5173"
+    environment: []
+    ## 추후 필요한 환경변수 추가
+    depends_on:
+      - backend
+    networks:
+      - ticketing_training_net
+networks:
+  ticketing_training_net:
+    driver: bridge
