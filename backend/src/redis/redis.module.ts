@@ -37,6 +37,7 @@ import { REDIS_BOOK, REDIS_WAIT } from './redis.constants';
       },
     },
   ],
+  exports: [REDIS_BOOK, REDIS_WAIT],
 })
 export class RedisModule implements OnModuleDestroy, OnModuleInit {
   constructor(
