@@ -2,6 +2,13 @@
 
 import { useResult } from "../../contexts/ResultProvider";
 
+/**
+ * 현재 컨텍스트에서 사용자 순위를 읽어 화면에 순위와 상위 백분위를 표시하는 React 컴포넌트.
+ *
+ * 컨텍스트에 순위가 없거나 유효하지 않으면 순위 정보를 불러올 수 없다는 안내 메시지를 렌더링한다.
+ *
+ * @returns 사용자 순위 또는 오류 안내를 포함한 JSX 요소
+ */
 export default function UserRank() {
   const { rank } = useResult();
   const userRank = rank ? parseInt(rank, 10) : null;

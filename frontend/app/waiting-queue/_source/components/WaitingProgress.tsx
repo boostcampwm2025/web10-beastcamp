@@ -7,6 +7,15 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useTimeLogStore } from "@/hooks/timeLogStore";
 
+/**
+ * 대기열 진행 상태를 표시하는 UI 컴포넌트.
+ *
+ * 컴포넌트 마운트 시 모든 타이머를 초기화하고 대기열 타이머를 시작하며,
+ * 대기 완료(isFinished)가 감지되면 대기열 타이머를 종료하고 현재 URL의 쿼리 문자열을 유지한 채 /reservations로 이동합니다.
+ * 화면에는 현재 대기 순번 또는 입장 중 메시지와 진행 바를 표시하고 페이지 새로고침을 차단합니다.
+ *
+ * @returns 대기열 진행 UI를 렌더한 JSX 요소
+ */
 export default function WaitingProgress() {
   const router = useRouter();
   const { data, isFinished } = useWaitingQueue();

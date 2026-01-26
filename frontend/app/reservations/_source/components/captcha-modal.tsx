@@ -20,7 +20,13 @@ interface CaptchaModalProps {
   onClose: () => void;
 }
 
-// 로딩 컴포넌트
+/**
+ * CAPTCHA 컴포넌트가 로드되는 동안 표시되는 로딩 상태 UI를 렌더링합니다.
+ *
+ * 카드 형태의 레이아웃으로 아이콘·제목·설명·스피너·상태 메시지를 표시하여 사용자가 CAPTCHA가 로드 중임을 인식하게 합니다.
+ *
+ * @returns 로딩 상태를 나타내는 React 요소
+ */
 function CaptchaLoadingFallback() {
   return (
     <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl">
@@ -55,7 +61,16 @@ function CaptchaLoadingFallback() {
   );
 }
 
-// 에러 컴포넌트
+/**
+ * 캡차 로드 실패 시 오류 메시지와 재시도 버튼을 표시하는 폼을 렌더합니다.
+ *
+ * 오류가 Error 인스턴스면 그 메시지를, 그렇지 않으면 기본 오류 메시지를 화면에 보여주고
+ * 사용자가 "다시 시도" 버튼을 누르면 제공된 콜백을 호출합니다.
+ *
+ * @param error - 발생한 오류 객체(또는 오류 원인). Error 인스턴스인 경우 메시지를 표시합니다.
+ * @param resetErrorBoundary - 재시도 시 호출되는 콜백 함수
+ * @returns 캡차 로드 실패 상태를 보여주는 React 요소 (오류 아이콘, 메시지, 재시도 버튼)
+ */
 function CaptchaErrorFallback({
   error,
   resetErrorBoundary,
@@ -99,6 +114,16 @@ function CaptchaErrorFallback({
   );
 }
 
+/**
+ * CAPTCHA 모달을 표시하고 검증 성공 시 타이밍 로그를 기록한 뒤 상위 콜백을 호출한다.
+ *
+ * 모달이 열리면 CAPTCHA 체류 시간 측정이 시작되고, CAPTCHA 검증이 완료되면 체류 측정이 종료되고 좌석 선택 측정이 시작된다.
+ *
+ * @param isOpen - 모달을 화면에 표시할지 여부
+ * @param onVerified - CAPTCHA 검증 성공 시 호출되는 콜백
+ * @param onClose - 모달을 닫기 위한 콜백 (현재 내부에서 직접 호출되지는 않음; 상위에서 사용)
+ * @returns 열려 있으면 CAPTCHA 모달의 React 요소를 렌더링하고, 닫혀 있으면 `null`
+ */
 export function CaptchaModal({
   isOpen,
   onVerified,

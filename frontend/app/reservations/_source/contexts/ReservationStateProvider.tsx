@@ -31,6 +31,12 @@ interface ReservationStateProviderProps {
   children: ReactNode;
 }
 
+/**
+ * 예약 상태 및 예약 조작 액션을 하위 컴포넌트에 제공하는 컨텍스트 프로바이더를 렌더링합니다.
+ *
+ * @param children - 프로바이더로 감쌀 자식 요소들
+ * @returns 예약 상태(선택된 좌석, 선택된 구역)와 예약 관련 액션들을 포함한 컨텍스트 프로바이더로 감싼 React 노드
+ */
 export function ReservationStateProvider({
   children,
 }: ReservationStateProviderProps) {
