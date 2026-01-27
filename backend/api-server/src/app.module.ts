@@ -5,6 +5,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { VenuesModule } from './venues/venues.module';
 import { PerformancesModule } from './performances/performances.module';
+import { CongestionModule } from './congestion/congestion.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { PerformancesModule } from './performances/performances.module';
     }),
     VenuesModule,
     PerformancesModule,
+    CongestionModule,
   ],
   controllers: [],
   providers: [],
