@@ -6,6 +6,14 @@ import {
 } from "../../contexts/ReservationProvider";
 import { gradeInfoColor } from "../../data/seat";
 
+/**
+ * Render a list of currently selected seats or a centered prompt when no seats are selected.
+ *
+ * Each list item displays the seat grade (styled using gradeInfoColor for the grade name),
+ * the block/row/column location, a right-aligned price, and a remove button that calls the reservation dispatch's remove handler for that seat.
+ *
+ * @returns A React element showing either the "select seats" message when there are no selections or the list of selected seat entries.
+ */
 export default function SelectedSeatsList() {
   const { selectedSeats } = useReservationState();
   const { handleRemoveSeat } = useReservationDispatch();

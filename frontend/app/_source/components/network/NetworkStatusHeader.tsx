@@ -7,6 +7,14 @@ interface NetworkStatusHeaderProps {
   checkNetwork: () => void;
 }
 
+/**
+ * Render a header showing current network status with an icon, a localized status message, and a refresh button.
+ *
+ * @param grade - Network quality grade; determines the status icon and localized message.
+ * @param isError - When `true`, displays an error message indicating a network request failure.
+ * @param checkNetwork - Callback invoked when the refresh button is clicked to re-check network status.
+ * @returns A JSX element containing the network status header and a refresh control.
+ */
 export default function NetworkStatusHeader({
   grade,
   isError,

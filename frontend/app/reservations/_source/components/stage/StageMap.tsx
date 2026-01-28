@@ -12,6 +12,15 @@ const AreaSeats = dynamic(() => import("./AreaSeats"), {
   ssr: false,
 });
 
+/**
+ * Render interactive stage map or area seat view for the current venue.
+ *
+ * Loads the venue's SVG map (respecting mock vs. API URL mode), applies grade-based fill colors to blocks,
+ * and dispatches area selection when a block is clicked. When `isShowArea` is true, renders the `AreaSeats`
+ * view wrapped in an error boundary and suspense.
+ *
+ * @returns A React element that displays either the SVG stage map with dynamic styles and click handling or the `AreaSeats` component.
+ */
 export default function StageMap() {
   const { venue, blockGrades } = useReservationData();
   const { isShowArea } = useReservationState();

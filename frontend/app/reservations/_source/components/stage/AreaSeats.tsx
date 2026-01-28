@@ -11,6 +11,15 @@ import { gradeInfoColor } from "../../data/seat";
 import { Seat } from "../../types/reservationType";
 import { useReservationSeatsQuery } from "../../queries/seat";
 
+/**
+ * Render a seat-selection interface for the currently selected venue area.
+ *
+ * Displays a header with refresh and "map view" controls, a centered "Stage" label,
+ * and a grid of seats organized by rows. Each seat reflects reservation state (disabled if reserved),
+ * highlights selected seats, and uses the area's grade color. Seat buttons toggle selection when available.
+ *
+ * @returns A React element containing the area seat picker with refresh and deselect controls, a stage label, and a row/seat grid where reserved seats are disabled and selected seats are visually indicated.
+ */
 export default function AreaSeats() {
   const searchParams = useSearchParams();
   const sessionId = Number(searchParams.get("sId"));

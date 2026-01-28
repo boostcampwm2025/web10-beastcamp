@@ -3,6 +3,15 @@
 import { useReservationData } from "../../contexts/ReservationProvider";
 import { gradeInfoColor } from "../../data/seat";
 
+/**
+ * Render a list of seat grades with a colored swatch and formatted price for each grade.
+ *
+ * Retrieves `grades` from the reservation context and renders a styled container
+ * where each grade row shows a color square (from `gradeInfoColor`), the grade name,
+ * and the price formatted with thousand separators followed by "원".
+ *
+ * @returns A JSX element containing the seat grade list with colored swatches and formatted prices.
+ */
 export default function SeatGradeInfo() {
   const { grades } = useReservationData();
 

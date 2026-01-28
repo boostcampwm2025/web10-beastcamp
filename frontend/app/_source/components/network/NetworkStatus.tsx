@@ -26,6 +26,15 @@ const getStatusColor = (
   }
 };
 
+/**
+ * Displays current network latency, bandwidth, and status with controls and diagnostics.
+ *
+ * On mount, triggers an initial network check after a 200ms delay and updates the displayed
+ * status, message, and optional metrics based on the hook-provided results and error state.
+ *
+ * @returns The rendered NetworkStatus React element showing status header, message,
+ *          optional metrics (when not in an error state), and additional status info.
+ */
 export default function NetworkStatus() {
   const { pings, bandwidth, grade, message, checkNetwork, isError } =
     useNetworkLatency();

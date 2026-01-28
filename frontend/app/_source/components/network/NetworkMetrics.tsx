@@ -3,6 +3,13 @@ interface NetworkMetricsProps {
   bandwidth: number | null;
 }
 
+/**
+ * Render a 4-column grid of network metrics showing per-target latency and overall bandwidth.
+ *
+ * @param pings - Array of ping entries to display; each entry's latency is shown rounded to the nearest millisecond as "`<n>ms`" or `"-"` when `null`.
+ * @param bandwidth - Connection speed displayed as "`<n>Mbps`" or `"-"` when `null`.
+ * @returns A React element containing a grid of cards for each ping and a final "Speed" card.
+ */
 export default function NetworkMetrics({
   pings,
   bandwidth,
