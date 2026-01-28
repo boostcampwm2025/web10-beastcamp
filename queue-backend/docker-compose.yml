@@ -11,6 +11,7 @@ services:
     # volumes:
     #   - ./queue-backend/redis_data:/data
   queue-backend:
+    image: ${NCP_REGISTRY_URL}/beastcamp-queue-backend:${IMAGE_TAG:-latest}
     build:
       context: ..
       dockerfile: queue-backend/Dockerfile

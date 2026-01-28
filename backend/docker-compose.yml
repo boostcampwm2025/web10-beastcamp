@@ -11,6 +11,7 @@ services:
     # volumes:
     #   - ./backend/redis_data:/data
   api-server:
+    image: ${NCP_REGISTRY_URL}/beastcamp-api-server:${IMAGE_TAG:-latest}
     build:
       context: ..
       dockerfile: backend/api-server/Dockerfile
@@ -29,6 +30,7 @@ services:
       - backend-network
 
   ticket-server:
+    image: ${NCP_REGISTRY_URL}/beastcamp-ticket-server:${IMAGE_TAG:-latest}
     build:
       context: ..
       dockerfile: backend/ticket-server/Dockerfile
