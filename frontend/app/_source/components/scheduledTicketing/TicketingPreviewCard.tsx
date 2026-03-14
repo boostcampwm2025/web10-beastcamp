@@ -18,13 +18,15 @@ export function TicketingPreviewCard(props: TicketingPreviewCardProps) {
     <div className="group">
       {/* 포스터 */}
       <div>
-        <div className="aspect-[3/4] bg-gradient-to-br from-purple-200 via-pink-200 to-orange-200 relative overflow-hidden">
+        <div className="aspect-3/4 bg-linear-to-br from-purple-200 via-pink-200 to-orange-200 relative overflow-hidden">
           {props.posterUrl ? (
             <Image
               src={props.posterUrl}
               alt={props.performanceName}
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              loading="lazy"
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center text-gray-400">
@@ -40,15 +42,15 @@ export function TicketingPreviewCard(props: TicketingPreviewCardProps) {
       </div>
 
       <div className="p-4">
-        <h4 className="mb-2 line-clamp-2 min-h-[3rem] group-hover:text-purple-600 transition-colors">
+        <h4 className="mb-2 line-clamp-2 min-h-12 group-hover:text-purple-600 transition-colors">
           {props.performanceName}
         </h4>
 
         <div className="space-y-2 text-sm">
           <div className="flex items-start gap-2 text-gray-600">
-            <Calendar className="w-4 h-4 mt-0.5 flex-shrink-0" />
-            <Mounted fallback={<div>시간 계산 중..</div>}>
-              <div>{formatDateTime(props.ticketingDate)}</div>
+            <Calendar className="w-4 h-4 mt-0.5 shrink-0" />
+            <Mounted fallback={<div className="min-h-5">시간 계산 중..</div>}>
+              <div className="min-h-5">{formatDateTime(props.ticketingDate)}</div>
             </Mounted>
           </div>
 
@@ -62,11 +64,11 @@ export function TicketingPreviewCard(props: TicketingPreviewCardProps) {
           {props.simulationDate && (
             <div className="pt-2 mt-2 border-t border-gray-100">
               <div className="flex items-center gap-2 text-purple-600">
-                <Clock className="w-4 h-4 flex-shrink-0" />
+                <Clock className="w-4 h-4 shrink-0" />
                 <Mounted
-                  fallback={<div className="text-xs">시간 계산 중..</div>}
+                  fallback={<div className="text-xs min-h-4">시간 계산 중..</div>}
                 >
-                  <div className="text-xs">
+                  <div className="text-xs min-h-4">
                     모의 티켓팅: {formatDateTime(props.simulationDate)}
                   </div>
                 </Mounted>

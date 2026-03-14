@@ -172,6 +172,7 @@ export default function PerformanceDetail({
                   src={performance.poster_url || "/images/poster.jpg"}
                   alt={performance.performance_name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="object-cover"
                   priority
                 />

@@ -26,10 +26,21 @@ const nextConfig: NextConfig = {
         hostname: "kopis.or.kr",
       },
     ],
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60,
   },
 
   reactCompiler: true,
   output: "standalone",
+
+  // 성능 최적화
+  compress: true,
+  poweredByHeader: false,
+
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ["recharts", "lucide-react"],
+  },
 };
 
 export default nextConfig;

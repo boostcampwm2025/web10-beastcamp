@@ -144,11 +144,12 @@ export default function Yes24PerformanceDetail({
           {/* 좌측: 포스터 */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
-              <div className="relative aspect-[3/4]">
+              <div className="relative aspect-3/4">
                 <Image
                   src={performance.poster_url || "/images/poster.jpg"}
                   alt={performance.performance_name}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 400px"
                   className="object-cover"
                   priority
                 />
